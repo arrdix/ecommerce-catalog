@@ -1,13 +1,13 @@
 <template>
-  <hello-world></hello-world>
+  <product-card />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ProductCard from './components/ProductCard.vue'
 
 export default {
   components: {
-    HelloWorld
+    ProductCard
   },
 }
 </script>
