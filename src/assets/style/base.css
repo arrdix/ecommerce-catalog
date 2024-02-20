@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+blockquote,
+code,
+em,
+img,
+strong,
+ol,
+ul,
+li,
+table,
+th,
+td,
+form,
+fieldset,
+legend,
+input,
+textarea,
+button,
+select {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.fw-thin {
+  font-weight: 100;
+}
+.fw-extra-light {
+  font-weight: 200;
+}
+.fw-light {
+  font-weight: 300;
+}
+.fw-regular {
+  font-weight: 400;
+}
+.fw-medium {
+  font-weight: 500;
+}
+.fw-semibold {
+  font-weight: 600;
+}
+.fw-bold {
+  font-weight: 700;
+}
+.fw-extra-bold {
+  font-weight: 800;
+}
+.fw-black {
+  font-weight: 900;
+}
+.fs-1 {
+  font-size: 2rem;
+}
+.fs-2 {
+  font-size: 1.5rem;
+}
+.fs-3 {
+  font-size: 1.25rem;
+}
+.fs-4 {
+  font-size: 1rem;
+}

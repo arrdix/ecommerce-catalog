@@ -10,22 +10,6 @@ export const store = createStore({
     }
   },
 
-  actions: {
-    async fetch(ctx) {
-      try {
-        const currentIndex = (store.state.index += 1)
-        const response = await axios.get(`https://fakestoreapi.com/products/${currentIndex}`)
-        ctx.commit('setProduct', response.data)
-
-        if (currentIndex === 20) {
-          ctx.commit('resetIndex')
-        }
-      } catch (error) {
-        ctx.commit('setErrorMessage', error)
-      }
-    }
-  },
-
   mutations: {
     setProduct(state, product) {
       state.product = { id: product.id, category: 'unavailable' }
@@ -41,6 +25,22 @@ export const store = createStore({
 
     setErrorMessage(state, errorMessage) {
       state.errorMessage = errorMessage
+    }
+  },
+
+  actions: {
+    async fetch(ctx) {
+      try {
+        const currentIndex = (store.state.index += 1)
+        const response = await axios.get(`https://fakestoreapi.com/products/${currentIndex}`)
+        ctx.commit('setProduct', response.data)
+
+        if (currentIndex === 20) {
+          ctx.commit('resetIndex')
+        }
+      } catch (error) {
+        ctx.commit('setErrorMessage', error)
+      }
     }
   },
 
