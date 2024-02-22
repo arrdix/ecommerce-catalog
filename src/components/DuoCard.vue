@@ -36,22 +36,23 @@ export default {
 <style scoped>
 .wrapper {
   width: 100%;
-  height: 100vh;;
+  height: 100vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .duo {
-  background-color: white;
-  width: 70%;
-  height: 60%;
-  padding: 2rem;
+  box-sizing: border-box;
+  background-color: var(--white);
+  width: 85%;
+  height: 85%;
+  padding: 5rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px;
   
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
 }
 .duo-image {
   flex: 40%;
@@ -60,30 +61,39 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.duo-image img {
-  width: 270px;
-  height: 310px;
-}
 .duo-detail {
   flex: 60%;
   height: 100%;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+}
+.duo-title {
+  margin-bottom: auto;
+}
+.duo-category-rating {
+  padding-block: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 .duo-description {
   padding-block: 1rem;
   border-top: 1px solid rgba(0, 0, 0, .2);
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  max-height: 130px;
+  height: 100%;
   overflow: auto;
-}
-.duo-category-rating {
+
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: start;
+}
+.duo-price {
+  padding-block: 1rem;
+  margin-top: auto;
 }
 .button-wrapper {
+  margin-top: auto;
+
   display: flex;
   justify-content: space-between;
   gap: 1rem;

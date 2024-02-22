@@ -1,7 +1,7 @@
 <template>
   <button
     @click="click"
-    :class="{ fill: fill }"
+    :class="selectTheme"
     class="custom-button fw-semibold"
   >
     {{ text }}
@@ -19,35 +19,52 @@ export default {
       type: Boolean,
       default: false
     },
-    thene: {
+    theme: {
       type: String,
-      default: 'gray'
     }
   },
 
   methods: {
     click() {
+      this.$emit('buttonClicked')
       this.$store.dispatch('fetch')
+    }
+  },
+
+  computed: {
+    selectTheme() {
+      if (this.fill) {
+        return {
+          'theme-men fill': this.theme === 'men',
+          'theme-women fill': this.theme === 'women',
+        }
+      }
+
+      if (this.theme) {
+        return {
+        'theme-men': this.theme === 'men',
+        'theme-women': this.theme === 'women',
+        }
+      }
+
+      return 'theme-default fill'
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .custom-button {
   width: 100%;
   padding-block: .5rem;
   padding-inline: 1rem;
-  border: 2px solid black;
   border-radius: 5px;
-  background-color: white;
-  color: black;
+  opacity: 100%;
+  transition: opacity .3s ease;
 }
 .custom-button:hover {
   cursor: pointer;
-}
-.fill {
-  background-color: gray;
-  color: white;
+  opacity: 75%;
+  transition: opacity .3s ease;
 }
 </style>

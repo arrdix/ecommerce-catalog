@@ -37,7 +37,17 @@ select {
   font: inherit;
   vertical-align: baseline;
 }
-
+:root {
+  --blue: #002772;
+  --pink: #FDE2FF;
+  --black: #1E1E1E;
+  --purple: #720060;
+  --sky: #D6E6FF;
+  --charcoal: #3F3F3F;
+  --gray: #DCDCDC;
+  --white: #FFFFFF;
+  --link: #2babcf;
+}
 body {
   font-family: "Inter", sans-serif;
   font-size: 16px;
@@ -72,6 +82,7 @@ body {
 }
 .fs-1 {
   font-size: 2rem;
+  line-height: 2.25rem;
 }
 .fs-2 {
   font-size: 1.5rem;
@@ -81,4 +92,40 @@ body {
 }
 .fs-4 {
   font-size: 1rem;
+}
+.theme-men {
+  color: var(--blue);
+  background-color: var(--white);
+}
+.theme-men.backdrop {
+  background-color: var(--sky);
+  color: var(--white);
+}
+.theme-men.fill {
+  background-color: var(--blue);
+  color: var(--white);
+}
+.theme-women {
+  color: var(--purple);
+  background-color: var(--white);
+}
+.theme-women.backdrop {
+  background-color: var(--pink);
+  color: var(--white);
+}
+.theme-women.fill {
+  background-color: var(--purple);
+  color: var(--white);
+}
+.theme-default {
+  color: var(--charcoal);
+  background-color: var(--gray);
+}
+.theme-default.backdrop {
+  background-color: var(--gray);
+  color: var(--white);
+}
+.theme-default.fill {
+  background-color: var(--charcoal);
+  color: var(--white);
 }

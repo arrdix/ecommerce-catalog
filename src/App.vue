@@ -1,34 +1,68 @@
-// TODO: create skeleton card before product-card & unavailable-card
-
 <template>
-  <div class="backdrop" />
+  <div 
+    class="backdrop"
+    :class="selectTheme"
+  />
   <div class="container">
-    <product-card v-if="product && product.category !== 'unavailable'"/>
+    <skeleton-card v-if="isLoading"/>
+    <product-card 
+      v-else-if="product"
+      :product="product"
+      :theme="theme"
+    />
     <unavailable-card v-else/>
-    <div v-if="product" class="id-display">
-      {{ product.id }}
-    </div>
+  </div>
+  <div v-if="currentIndex" class="id-display">
+    {{ currentIndex }}
   </div>
 </template>
 
 <script>
 import ProductCard from './components/ProductCard.vue';
 import UnavailableCard from './components/UnavailableCard.vue';
+import SkeletonCard from './components/SkeletonCard.vue';
 
 export default {
   components: {
     ProductCard,
-    UnavailableCard
-
+    UnavailableCard,
+    SkeletonCard
   },
 
-  async mounted() {
+  async created() {
     await this.$store.dispatch('fetch')
   },
 
   computed: {
     product() {
       return this.$store.getters.getProduct
+    },
+
+    theme() {
+      return this.$store.getters.getTheme
+    },
+
+    currentIndex() {
+      return this.$store.getters.getCurrentIndex
+    },
+
+    selectTheme() {
+      if (this.isLoading) {
+        return 'theme-default'
+      }
+
+      if (this.product) {
+        return {
+        'theme-men': this.theme === "men",
+        'theme-women': this.theme=== "women",
+        }
+      }
+
+      return 'theme-default'
+    },
+
+    isLoading() {
+      return this.$store.getters.getLoadingStatus
     }
   }
 }
@@ -41,7 +75,6 @@ export default {
   left: 0;
   width: 100%;
   height: 65vh;
-  background-color: grey;
   z-index: -100;
 }
 .container {
@@ -52,8 +85,8 @@ export default {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: white;
-  color: black;
+  background-color: var(--white);
+  color: var(--black);
   padding: .5rem;
 }
 </style>
