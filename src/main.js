@@ -1,4 +1,5 @@
 import './assets/style/base.css'
+import './assets/style/animation.css'
 
 import { createApp } from 'vue'
 import { store } from './store/store.js'
