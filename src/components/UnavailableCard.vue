@@ -8,6 +8,7 @@
       <h1 class="unavailable-message fw-regular fs-3">This product is unavailable to show.</h1>
       <custom-button
         :text="nextProductText"
+        @buttonClicked="nextProduct"
       />
     </template>
   </solo-card>
@@ -26,6 +27,12 @@ export default {
   data() {
     return {
       nextProductText: 'Next Product'
+    }
+  },
+
+  methods: {
+    nextProduct() {
+      this.$store.dispatch('fetch')
     }
   }
 }

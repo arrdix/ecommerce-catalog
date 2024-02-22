@@ -25,7 +25,7 @@
 
     <template v-slot:description>
       <h3 class="product-description fw-regular fs-4">
-        {{ minimalizeDescription(product.description) }}
+        {{ minimizeDescription(product.description) }}
         <span>
           <a
             v-if="!isMinimized"
@@ -59,7 +59,7 @@
       <custom-button
         :text="nextProductText"
         :theme="theme"
-        @buttonClicked="resetMinimalized"
+        @buttonClicked="nextProduct"
       />
     </template>
   </duo-card>
@@ -99,11 +99,12 @@ export default {
       this.isMinimized = true
     },
 
-    resetMinimalized() {
+    nextProduct() {
       this.isMinimized = false
+      this.$store.dispatch('fetch')
     },
 
-    minimalizeDescription(desc) {
+    minimizeDescription(desc) {
       const splitted = desc.split('')
       const maxChars = 150
 

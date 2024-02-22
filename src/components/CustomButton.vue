@@ -27,7 +27,6 @@ export default {
   methods: {
     click() {
       this.$emit('buttonClicked')
-      this.$store.dispatch('fetch')
     }
   },
 
