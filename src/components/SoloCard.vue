@@ -15,20 +15,20 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .wrapper {
   width: 100%;
-  height: 100vh;;
+  height: 100vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .solo {
-  background-color: white;
-  width: 70%;
-  height: 60%;
-  padding: 2rem;
+  box-sizing: border-box;
+  background-color: var(--white);
+  width: 85%;
+  height: 85%;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px;
   overflow: hidden;

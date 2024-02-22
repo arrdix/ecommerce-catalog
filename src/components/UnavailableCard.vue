@@ -3,8 +3,9 @@
     <template v-slot:solo-image>
       <img class="solo-image" src="../assets/unavailable.jpg" alt="">
     </template>
+    
     <template v-slot:solo-content>
-      <h1 class="unavailable-message fw-regular fs-3">This product is unavailable to show</h1>
+      <h1 class="unavailable-message fw-regular fs-3">This product is unavailable to show.</h1>
       <custom-button
         :text="nextProductText"
       />
@@ -32,6 +33,9 @@ export default {
 
 <style scoped>
 .solo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   opacity: 10%;
 }
 .unavailable-message {
