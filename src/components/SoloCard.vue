@@ -2,6 +2,9 @@
   <div class="wrapper">
     <div class="solo">
       <slot name="solo-image"></slot>
+      <div class="solo-absolute">
+        <slot name="solo-absolute"></slot>
+      </div>
       <div class="solo-content">
         <slot name="solo-content"></slot>
       </div>
@@ -37,12 +40,16 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.solo-content {
+.solo-absolute {
   position: absolute;
   width: 35%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.solo-content {
+  width: 100%;
+  height: 100%;
 }
 </style>

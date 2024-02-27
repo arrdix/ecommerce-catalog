@@ -4,7 +4,7 @@
       <img class="solo-image" src="../assets/unavailable.jpg" alt="">
     </template>
     
-    <template v-slot:solo-content>
+    <template v-slot:solo-absolute>
       <h1 class="unavailable-message fw-regular fs-3">This product is unavailable to show.</h1>
       <custom-button
         :text="nextProductText"
