@@ -18,7 +18,10 @@
     </template>
 
     <template v-slot:rating>
-      <h2 class="product-rating fw-medium fs-4">{{ product.rating.rate }}/5</h2>
+      <div class="product-rating">
+        <h2 class="fw-medium fs-4">{{ product.rating.rate }}/5</h2>
+        <rating-box :theme="theme"/>
+      </div>
     </template>
 
     <template v-slot:description>
@@ -67,11 +70,13 @@
 <script>
 import DuoCard from './DuoCard.vue';
 import CustomButton from './CustomButton.vue';
+import RatingBox from './RatingBox.vue';
 
 export default {
   components: {
     DuoCard,
-    CustomButton
+    CustomButton,
+    RatingBox
   },
 
   data() {
@@ -143,6 +148,12 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+.product-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
 }
 .read-more {
   color: var(--link);
