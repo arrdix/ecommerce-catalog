@@ -6,7 +6,8 @@ export const state = {
   theme: 'default',
   currentIndex: 0,
   errorMessage: null,
-  isLoading: true
+  isLoading: true,
+  inCart: []
 }
 
 export const mutations = {
@@ -39,6 +40,16 @@ export const mutations = {
 
   setLoading(state, status) {
     state.isLoading = status
+  },
+
+  setInCart(state, payload) {
+    state.inCart.push(payload)
+  },
+
+  updateInCart(state, payload) {
+    for (const product of payload) {
+      state.inCart = state.inCart.filter((item) => item.id !== product.id)
+    }
   }
 }
 
@@ -79,6 +90,10 @@ export const getters = {
 
   getLoadingStatus(state) {
     return state.isLoading
+  },
+
+  getInCart(state) {
+    return state.inCart
   }
 }
 

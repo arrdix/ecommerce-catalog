@@ -1,19 +1,41 @@
 <template>
+  <transition name="float">
+    <floating-toast 
+      v-if="toastText"
+      :text="toastText"
+    />
+  </transition>
   <div 
     class="backdrop"
     :class="selectTheme"
   />
   <div class="container">
-    <skeleton-card v-if="isLoading"/>
-    <product-card 
-      v-else-if="product"
-      :product="product"
-      :theme="theme"
+    <side-bar
+      @hover="collapse"
+      @renderCart="renderCart"
+      @renderProducts="renderProducts"
+      :class="{ collapse: isCollapse }"
+      class="sidebar" 
     />
-    <unavailable-card v-else/>
-  </div>
-  <div v-if="currentIndex" class="id-display">
-    {{ currentIndex }}
+    <div class="cards">
+      <transition name="switch" mode="out-in">
+        <cart-card 
+          v-if="toRender === 'cart'"
+          @productPurchased="triggerToast('Product(s) purcashed.')"
+          @cartIsEmpty="triggerToast('No product selected.')"
+          />
+        <div v-else class="product-cards">
+          <skeleton-card v-if="isLoading"/>
+          <product-card 
+            v-else-if="product"
+            :product="product"
+            :theme="theme"
+            @addedToCart="triggerToast('Product added to cart.')"
+          />
+          <unavailable-card v-else/>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -21,16 +43,48 @@
 import ProductCard from './components/ProductCard.vue';
 import UnavailableCard from './components/UnavailableCard.vue';
 import SkeletonCard from './components/SkeletonCard.vue';
+import SideBar from './components/SideBar.vue';
+import CartCard from './components/CartCard.vue';
+import FloatingToast from './components/FloatingToast.vue';
 
 export default {
   components: {
     ProductCard,
     UnavailableCard,
-    SkeletonCard
+    SkeletonCard,
+    SideBar,
+    CartCard,
+    FloatingToast
+  },
+
+  data() {
+    return {
+      isCollapse: false,
+      toRender: 'products',
+      toastText: null
+    }
   },
 
   async created() {
     await this.$store.dispatch('fetch')
+  },
+
+  methods: {
+    collapse() {
+      this.isCollapse = !this.isCollapse
+    },
+    renderCart() {
+      this.toRender = 'cart'
+    },
+    renderProducts() {
+      this.toRender = 'products'
+    },
+    triggerToast(text) {
+      this.toastText = text
+      setTimeout(() => {
+        this.toastText = null
+      }, 1000);
+    }
   },
 
   computed: {
@@ -40,10 +94,6 @@ export default {
 
     theme() {
       return this.$store.getters.getTheme
-    },
-
-    currentIndex() {
-      return this.$store.getters.getCurrentIndex
     },
 
     selectTheme() {
@@ -58,7 +108,7 @@ export default {
         }
       }
 
-      return 'theme-default'
+      return 'theme-unavailable'
     },
 
     isLoading() {
@@ -80,13 +130,38 @@ export default {
 .container {
   width: 100%;
   height: 100vh;
+
+  display: flex;
 }
-.id-display {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: var(--white);
-  color: var(--black);
-  padding: .5rem;
+.cards, .product-cards {
+  width: 100%;
+  height: 100vh;
+}
+.sidebar {
+  box-sizing: border-box;
+  width: 100%;
+  flex: 3.75rem;
+  transition: flex 1s ease;
+}
+.sidebar.collapse {
+  flex: 15rem;
+  transition: flex 1s ease;
+}
+.switch-enter-from,
+.switch-leave-to {
+  opacity: 0;
+}
+.switch-enter-active,
+.switch-leave-active {
+  transition: all .3s ease-in-out;
+}
+.float-enter-from,
+.float-leave-to {
+  opacity: 0;
+  transform: translateY(-50%);
+}
+.float-enter-active,
+.float-leave-active {
+  transition: all .5s ease-in-out;
 }
 </style>
