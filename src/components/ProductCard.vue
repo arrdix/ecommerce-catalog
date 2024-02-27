@@ -1,5 +1,3 @@
-// TODO: fix read more issue
-
 <template>
   <duo-card v-if="product">
     <template v-slot:image>
@@ -52,6 +50,7 @@
         :text="buyProductText"
         :fill="true"
         :theme="theme"
+        @buttonClicked="buyProduct(product)"
       />
     </template>
 
@@ -100,8 +99,12 @@ export default {
     },
 
     nextProduct() {
-      this.isMinimized = false
       this.$store.dispatch('fetch')
+    },
+
+    buyProduct(product) {
+      this.$store.commit('setInCart', product)
+      this.$emit('addedToCart')
     },
 
     minimizeDescription(desc) {
@@ -115,10 +118,11 @@ export default {
           newDesc.push(splitted[i])
         }
 
-        // this.isMinimized = true
+        newDesc.push('...')
         return newDesc.join('')
-      } 
-
+      }
+      
+      this.isMinimized = true
       return desc
     },
   },
