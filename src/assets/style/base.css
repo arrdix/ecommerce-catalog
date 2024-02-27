@@ -29,7 +29,8 @@ legend,
 input,
 textarea,
 button,
-select {
+select,
+i {
   margin: 0;
   padding: 0;
   border: 0;
@@ -47,11 +48,16 @@ select {
   --gray: #DCDCDC;
   --white: #FFFFFF;
   --link: #2babcf;
+  --red: #c44b4b;
+  --green: #54a16d;
 }
 body {
   font-family: "Inter", sans-serif;
   font-size: 16px;
   line-height: 1.6;
+}
+button {
+  background-color: var(--white);
 }
 .fw-thin {
   font-weight: 100;
@@ -93,6 +99,9 @@ body {
 .fs-4 {
   font-size: 1rem;
 }
+.fs-5 {
+  font-size: .8rem;
+}
 .theme-men {
   color: var(--blue);
   background-color: var(--white);
@@ -100,6 +109,7 @@ body {
 .theme-men.backdrop {
   background-color: var(--sky);
   color: var(--white);
+  transition: background-color .5s ease;
 }
 .theme-men.fill {
   background-color: var(--blue);
@@ -112,20 +122,26 @@ body {
 .theme-women.backdrop {
   background-color: var(--pink);
   color: var(--white);
+  transition: background-color .5s ease;
 }
 .theme-women.fill {
   background-color: var(--purple);
   color: var(--white);
 }
-.theme-default {
+.theme-unavailable {
   color: var(--charcoal);
   background-color: var(--gray);
 }
-.theme-default.backdrop {
+.theme-unavailable.backdrop {
   background-color: var(--gray);
   color: var(--white);
+  transition: background-color .5s ease;
 }
-.theme-default.fill {
+.theme-unavailable.fill {
   background-color: var(--charcoal);
   color: var(--white);
+}
+.theme-default.backdrop {
+  background-color: var(--white);
+  transition: background-color .5s ease;
 }

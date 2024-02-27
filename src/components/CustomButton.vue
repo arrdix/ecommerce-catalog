@@ -46,7 +46,7 @@ export default {
         }
       }
 
-      return 'theme-default fill'
+      return 'theme-unavailable fill'
     }
   }
 }
