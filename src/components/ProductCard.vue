@@ -1,5 +1,6 @@
 <template>
   <duo-card v-if="product">
+    <p class="testa"></p>
     <template v-slot:image>
       <img class="product-image" :src="`${product.image}`" alt="">
     </template>
@@ -114,7 +115,7 @@ export default {
 
     minimizeDescription(desc) {
       const splitted = desc.split('')
-      const maxChars = 150
+      const maxChars = 300
 
       if (!this.isMinimized && splitted.length > maxChars) {
         let newDesc = []
@@ -145,8 +146,8 @@ export default {
 
 <style scoped>
 .product-image {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   object-fit: contain;
 }
 .product-rating {

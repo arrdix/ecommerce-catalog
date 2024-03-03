@@ -102,6 +102,9 @@ button {
 .fs-5 {
   font-size: .8rem;
 }
+.fs-6 {
+  font-size: .7rem;
+}
 .theme-men {
   color: var(--blue);
   background-color: var(--white);

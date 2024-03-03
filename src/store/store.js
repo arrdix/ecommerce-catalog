@@ -43,12 +43,16 @@ export const mutations = {
   },
 
   setInCart(state, payload) {
-    state.inCart.push(payload)
+    if (payload) {
+      state.inCart.push(payload)
+    }
   },
 
   updateInCart(state, payload) {
-    for (const product of payload) {
-      state.inCart = state.inCart.filter((item) => item.id !== product.id)
+    if (payload) {
+      for (const product of payload) {
+        state.inCart = state.inCart.filter((item) => item.id !== product.id)
+      }
     }
   }
 }
