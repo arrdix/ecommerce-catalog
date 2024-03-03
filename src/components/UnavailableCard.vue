@@ -1,7 +1,7 @@
 <template>
   <solo-card>
     <template v-slot:solo-image>
-      <img class="solo-image" src="../assets/unavailable.jpg" alt="">
+      <img class="solo-image" src="../assets/unavailable.jpg" alt="unavailable background">
     </template>
     
     <template v-slot:solo-absolute>
@@ -43,7 +43,6 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 10%;
 }
 .unavailable-message {
   margin-bottom: .5rem;
