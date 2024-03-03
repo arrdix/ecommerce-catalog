@@ -40,7 +40,8 @@ beforeEach(() => {
       getProduct: getters.getProduct,
       getTheme: getters.getTheme,
       getCurrentIndex: getters.getCurrentIndex,
-      getLoadingStatus: getters.getLoadingStatus
+      getLoadingStatus: getters.getLoadingStatus,
+      getInCart: getters.getInCart
     }
   })
 })
@@ -111,5 +112,29 @@ describe('vuex store flows', () => {
       const product = store.getters.getProduct
       expect(product).toEqual(mock.product)
     }
+  })
+
+  it('should set the inCart state when setInCart commmited', async () => {
+    // act
+    store.commit('setInCart', mockData[0].product)
+
+    // assert
+    const inCart = store.getters.getInCart
+    expect(inCart).toEqual([mockData[0].product])
+  })
+
+  it('should update the inCart state when updateInCart commited', async () => {
+    // arrange
+    store.state.inCart = []
+    for (const mock of mockData) {
+      store.commit('setInCart', mock.product)
+    }
+
+    // act
+    store.commit('updateInCart', [mockData[0].product])
+
+    // assert
+    const inCart = store.getters.getInCart
+    expect(inCart).toEqual([mockData[1].product])
   })
 })
