@@ -5,16 +5,16 @@
       :text="toastText"
     />
   </transition>
-  <div 
+  <img 
+    src="./assets/backdrop-pattern.png" 
+    alt="backdrop-pattern"
     class="backdrop"
     :class="selectTheme"
   />
   <div class="container">
     <side-bar
-      @hover="collapse"
       @renderCart="renderCart"
       @renderProducts="renderProducts"
-      :class="{ collapse: isCollapse }"
       class="sidebar" 
     />
     <div class="cards">
@@ -23,7 +23,7 @@
           v-if="toRender === 'cart'"
           @productPurchased="triggerToast('Product(s) purcashed.')"
           @cartIsEmpty="triggerToast('No product selected.')"
-          />
+        />
         <div v-else class="product-cards">
           <skeleton-card v-if="isLoading"/>
           <product-card 
@@ -59,26 +59,28 @@ export default {
 
   data() {
     return {
-      isCollapse: false,
       toRender: 'products',
       toastText: null
     }
   },
 
-  async created() {
-    await this.$store.dispatch('fetch')
+  created() {
+    this.getProduct()
   },
 
   methods: {
-    collapse() {
-      this.isCollapse = !this.isCollapse
+    getProduct() {
+      this.$store.dispatch('fetch')
     },
+
     renderCart() {
       this.toRender = 'cart'
     },
+
     renderProducts() {
       this.toRender = 'products'
     },
+
     triggerToast(text) {
       this.toastText = text
       setTimeout(() => {
@@ -141,10 +143,6 @@ export default {
   box-sizing: border-box;
   width: 100%;
   flex: 3.75rem;
-  transition: flex 1s ease;
-}
-.sidebar.collapse {
-  flex: 15rem;
   transition: flex 1s ease;
 }
 .switch-enter-from,
